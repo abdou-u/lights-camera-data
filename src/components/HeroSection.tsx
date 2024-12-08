@@ -1,27 +1,26 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import heroBackground from "../assets/movie-bg.jpg"; // Movie-related background image
+import heroBackground from "../assets/movie-bg.jpg";
 
 const HeroSection: React.FC = () => {
     const navigate = useNavigate();
 
-    // Animation Variants
     const fadeIn = {
         hidden: { opacity: 0, y: -20 },
         visible: { opacity: 1, y: 0 },
     };
 
     const grow = {
-        hidden: { opacity: 0, scale: 0.8 },
+        hidden: { opacity: 0, scale: 0.9 },
         visible: { opacity: 1, scale: 1 },
     };
 
     return (
-        <section className="relative h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white">
-            {/* Main Title */}
+        <section className="relative h-screen flex flex-col items-center justify-center bg-hero-gradient text-white">
+            {/* Title */}
             <motion.h1
-                className="text-4xl md:text-6xl font-extrabold mb-4 text-center"
+                className="text-4xl md:text-6xl font-extrabold mb-6 text-center text-glow"
                 initial="hidden"
                 animate="visible"
                 variants={fadeIn}
@@ -32,7 +31,7 @@ const HeroSection: React.FC = () => {
 
             {/* Subtitle */}
             <motion.p
-                className="text-lg md:text-xl text-center max-w-3xl mx-auto mb-8"
+                className="text-lg md:text-xl max-w-3xl text-center mb-8"
                 initial="hidden"
                 animate="visible"
                 variants={fadeIn}
@@ -41,20 +40,20 @@ const HeroSection: React.FC = () => {
                 Discover the secrets behind box office success and predict the future of cinema through advanced data analysis.
             </motion.p>
 
-            {/* Interactive Box */}
+            {/* "Start the Journey" Box */}
             <motion.div
-                className="relative w-3/4 md:w-1/2 h-48 md:h-64 bg-cover bg-center cursor-pointer shadow-lg rounded-lg overflow-hidden transform transition-transform hover:scale-105"
+                className="relative w-full max-w-lg h-64 md:h-80 bg-cover bg-center rounded-lg shadow-strong overflow-hidden transform transition-transform hover:scale-105 hover-glow"
                 style={{ backgroundImage: `url(${heroBackground})` }}
-                onClick={() => navigate("/project-overview")}
+                onClick={() => navigate("/project-introduction")}
                 initial="hidden"
                 animate="visible"
                 variants={grow}
                 transition={{ duration: 0.8, delay: 0.4 }}
                 aria-label="Start the Journey"
             >
-                {/* Overlay Text */}
+                {/* Overlay */}
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                    <h2 className="text-2xl md:text-3xl font-bold text-white">
+                    <h2 className="text-2xl md:text-4xl font-bold text-white">
                         Start the Journey
                     </h2>
                 </div>
