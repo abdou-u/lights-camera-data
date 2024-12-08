@@ -1,19 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import heroBackground from "../assets/movie-bg.jpg";
 
 const HeroSection: React.FC = () => {
     const navigate = useNavigate();
+    const [isHovered, setIsHovered] = useState(false);
 
     const fadeIn = {
         hidden: { opacity: 0, y: -20 },
         visible: { opacity: 1, y: 0 },
     };
 
-    const grow = {
-        hidden: { opacity: 0, scale: 0.9 },
-        visible: { opacity: 1, scale: 1 },
+    // Ripple animation for clicks
+    const handleBoxClick = () => {
+        navigate("/project-introduction");
     };
 
     return (
@@ -42,20 +43,26 @@ const HeroSection: React.FC = () => {
 
             {/* "Start the Journey" Box */}
             <motion.div
-                className="relative w-full max-w-lg h-64 md:h-80 bg-cover bg-center rounded-lg shadow-strong overflow-hidden transform transition-transform hover:scale-105 hover-glow"
+                className={`relative w-full max-w-lg h-64 md:h-80 bg-cover bg-center rounded-lg shadow-strong overflow-hidden transform transition-transform cursor-pointer ${
+                    isHovered ? "hover-glow" : ""
+                }`}
                 style={{ backgroundImage: `url(${heroBackground})` }}
-                onClick={() => navigate("/project-introduction")}
-                initial="hidden"
-                animate="visible"
-                variants={grow}
-                transition={{ duration: 0.8, delay: 0.4 }}
+                onClick={handleBoxClick}
+                onMouseEnter={() => setIsHovered(true)} // Trigger hover state
+                onMouseLeave={() => setIsHovered(false)} // Reset to normal
+                animate={{ scale: isHovered ? 1.05 : 1 }} // Control scale dynamically
+                transition={{ type: "spring", stiffness: 300 }}
                 aria-label="Start the Journey"
             >
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                    <h2 className="text-2xl md:text-4xl font-bold text-white">
+                    <motion.h2
+                        className="text-2xl md:text-4xl font-bold text-white"
+                        whileHover={{ scale: 1.1 }} // Slight text scale on hover
+                        transition={{ type: "spring", stiffness: 300 }}
+                    >
                         Start the Journey
-                    </h2>
+                    </motion.h2>
                 </div>
             </motion.div>
         </section>

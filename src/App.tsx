@@ -10,7 +10,7 @@ const TeamSection = lazy(() => import("./pages/TeamSection"));
 const About = lazy(() => import("./pages/About"));
 const Explore = lazy(() => import("./pages/Explore"));
 const Predict = lazy(() => import("./pages/Predict"));
-const ProjectIntroduction = lazy(() => import("./components/Project"));
+const ProjectIntroduction = lazy(() => import("./components/ProjectIntroduction"));
 
 // Components
 import ScrollToTop from "./components/ScrollToTop";
