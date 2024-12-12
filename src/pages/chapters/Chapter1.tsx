@@ -34,7 +34,7 @@ const Chapter1: React.FC = () => {
       <div className="bg-dark py-12">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-center text-3xl font-bold text-light mb-8">
-            Explore Movie Genres
+            Explore Movie Genres Revenu
           </h2>
           <p className="text-center text-gray-400 mb-6">
             Use the slider below to select the number of top genres displayed in the interactive chart. 

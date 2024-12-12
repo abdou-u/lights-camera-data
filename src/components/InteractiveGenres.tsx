@@ -10,11 +10,34 @@ interface GenreData {
 
 const InteractiveGenres: React.FC<{ data: GenreData[] }> = ({ data }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const [topX, setTopX] = useState(10); // Default top 10 genres
+  const [dimensions, setDimensions] = useState<{ width: number; height: number }>({
+    width: 0,
+    height: 0,
+  });
 
   useEffect(() => {
-    const width = 800;
-    const height = 400;
+    // Function to update chart dimensions based on container size
+    const updateDimensions = () => {
+      const width = containerRef.current?.clientWidth || 800;
+      const height = Math.min(width * 0.5, 500); // Maintain a height ratio
+      setDimensions({ width, height });
+    };
+
+    // Initial dimensions and resize listener
+    updateDimensions();
+    window.addEventListener("resize", updateDimensions);
+
+    return () => {
+      window.removeEventListener("resize", updateDimensions);
+    };
+  }, []);
+
+  useEffect(() => {
+    const { width, height } = dimensions;
+    if (!width || !height) return;
+
     const margin = { top: 20, right: 30, bottom: 80, left: 80 };
 
     const svg = d3
@@ -114,10 +137,10 @@ const InteractiveGenres: React.FC<{ data: GenreData[] }> = ({ data }) => {
       .style("padding", "10px")
       .style("border-radius", "8px")
       .style("pointer-events", "none");
-  }, [data, topX]);
+  }, [data, topX, dimensions]);
 
   return (
-    <div className="mt-8 p-4 bg-dark rounded-lg shadow-strong">
+    <div ref={containerRef}>
       <div className="flex flex-col items-center mb-6">
         <label
           htmlFor="topX"
@@ -129,7 +152,7 @@ const InteractiveGenres: React.FC<{ data: GenreData[] }> = ({ data }) => {
           type="range"
           id="topX"
           min="1"
-          max="20"
+          max="50"
           value={topX}
           onChange={(e) => setTopX(Number(e.target.value))}
           className="w-full md:w-1/2"
