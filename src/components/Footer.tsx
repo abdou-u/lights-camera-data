@@ -56,7 +56,7 @@ const Footer: React.FC = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
                 >
-                    © {currentYear} Lights, Camera, Data. All Rights Reserved.
+                    © {currentYear} Lights, Camera, Data! All Rights Reserved.
                 </motion.p>
                 <motion.p
                     className="text-xs md:text-sm"

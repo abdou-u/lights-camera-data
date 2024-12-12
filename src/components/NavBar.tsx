@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-import { AiOutlineHome, AiOutlineFundProjectionScreen, AiOutlineUser } from "react-icons/ai";
+import { AiOutlineHome, AiOutlineUser } from "react-icons/ai";
 import { CgFileDocument } from "react-icons/cg";
 import { motion } from "framer-motion";
 
@@ -52,10 +52,8 @@ function NavBar() {
     // Navbar Items
     const navItems = [
         { path: "/", label: "Home", icon: <AiOutlineHome /> },
-        { path: "/team", label: "Team", icon: <AiOutlineUser /> },
-        { path: "/about", label: "About", icon: <AiOutlineUser /> },
-        { path: "/explore", label: "Explore", icon: <AiOutlineFundProjectionScreen /> },
         { path: "/predict", label: "Predict", icon: <CgFileDocument /> },
+        { path: "/team", label: "Team", icon: <AiOutlineUser /> },
     ];
 
     return (
